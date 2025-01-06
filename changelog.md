@@ -1,5 +1,5 @@
-<!-- NOTE: important change
 ## Changes
 
-- Update 428
+- Update 3
 - Minor improvements
+
