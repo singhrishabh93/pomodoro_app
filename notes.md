@@ -1,6 +1,6 @@
-<!-- NOTE: important change
+// Updated
 # Notes
 
-## Entry 11
+## Entry 16
 
 Some thoughts and ideas...
