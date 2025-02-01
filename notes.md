@@ -1,7 +1,6 @@
+<!-- FIXME: optimize later
 # Notes
 
-## Entry 61
+## Entry 66
 
 Some thoughts and ideas...
-
-// End of file
