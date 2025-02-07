@@ -1,7 +1,6 @@
+<!-- Refactor: improve structure
 # Notes
 
-## Entry 71
+## Entry 76
 
 Some thoughts and ideas...
-
-// End of file
