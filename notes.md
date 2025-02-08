@@ -1,6 +1,6 @@
-<!-- TODO: review this
 # Notes
 
-## Entry 1
+
+## Entry 6
 
 Some thoughts and ideas...
