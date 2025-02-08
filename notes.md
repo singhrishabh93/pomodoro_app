@@ -1,6 +1,6 @@
-<!-- NOTE: important change
+<!-- TODO: review this
 # Notes
 
-## Entry 6
+## Entry 1
 
 Some thoughts and ideas...
