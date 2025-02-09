@@ -1,5 +1,5 @@
-<!-- FIXME: optimize later
+<!-- Update: minor adjustment
 ## Changes
 
-- Update 13
+- Update 18
 - Minor improvements
