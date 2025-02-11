@@ -1,7 +1,6 @@
+
 # Notes
 
-## Entry 16
+## Entry 21
 
 Some thoughts and ideas...
-
-// End of file
