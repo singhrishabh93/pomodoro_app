@@ -1,6 +1,6 @@
-<!-- Update: minor adjustment
+
 # Notes
 
-## Entry 81
+## Entry 86
 
 Some thoughts and ideas...
