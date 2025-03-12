@@ -3,16 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro_app/blocs/settings/settings_bloc.dart';
 import 'package:pomodoro_app/blocs/theme/theme_bloc.dart';
-import 'package:pomodoro_app/screens/settings_screen.dart';
-import 'package:pomodoro_app/widgets/setting_tile.dart';
 
 import '../blocs/timer/timer_bloc.dart';
 import '../blocs/timer/timer_state.dart';
 import '../blocs/timer/timer_event.dart';
 import '../widgets/display.dart';
-import '../widgets/play_button.dart';
-import '../widgets/skip_button.dart';
-import '../widgets/settings_button.dart';
 import '../widgets/stage_label.dart';
 
 class TimerScreen extends StatefulWidget {
@@ -317,7 +312,7 @@ class _TimerScreenState extends State<TimerScreen> {
           style: GoogleFonts.outfit(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Theme.of(context).colorScheme.onBackground,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         Switch(
@@ -348,7 +343,7 @@ Widget _buildNumberSetting(String title, int value, Function(int) onChanged, Bui
             style: GoogleFonts.outfit(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),

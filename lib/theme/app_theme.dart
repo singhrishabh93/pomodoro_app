@@ -6,7 +6,7 @@ ThemeData getLightTheme(Color accentColor) {
     colorScheme: ColorScheme.light(
       primary: accentColor,
       secondary: accentColor,
-      background: _getLightBackgroundColor(accentColor),
+      surface: _getLightBackgroundColor(accentColor),
     ),
     scaffoldBackgroundColor: _getLightBackgroundColor(accentColor),
     appBarTheme: AppBarTheme(
@@ -29,14 +29,14 @@ ThemeData getLightTheme(Color accentColor) {
       ),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.selected)) {
+      thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentColor;
         }
         return Colors.grey;
       }),
-      trackColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.selected)) {
+      trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentColor.withOpacity(0.5);
         }
         return Colors.grey.withOpacity(0.5);
@@ -51,7 +51,7 @@ ThemeData getDarkTheme(Color accentColor) {
     colorScheme: ColorScheme.dark(
       primary: accentColor,
       secondary: accentColor,
-      background: _getDarkBackgroundColor(accentColor),
+      surface: _getDarkBackgroundColor(accentColor),
     ),
     scaffoldBackgroundColor: _getDarkBackgroundColor(accentColor),
     appBarTheme: AppBarTheme(
@@ -74,14 +74,14 @@ ThemeData getDarkTheme(Color accentColor) {
       ),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.selected)) {
+      thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentColor;
         }
         return Colors.grey;
       }),
-      trackColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.selected)) {
+      trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
           return accentColor.withOpacity(0.5);
         }
         return Colors.grey.withOpacity(0.3);
