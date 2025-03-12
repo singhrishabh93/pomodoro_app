@@ -22,7 +22,7 @@ class Display extends StatelessWidget {
 
     return AnimatedDefaultTextStyle(
       duration: const Duration(milliseconds: 200),
-      style: GoogleFonts.roboto(
+      style: GoogleFonts.outfit(
         fontWeight: isRunning ? FontWeight.bold : FontWeight.normal,
         color: Theme.of(context).colorScheme.primary,
       ),
@@ -32,7 +32,7 @@ class Display extends StatelessWidget {
         children: [
           Text(
             formattedMinutes,
-            style: GoogleFonts.roboto(
+            style: GoogleFonts.outfit(
               fontSize: 180,
               height: 0.9,
               fontWeight: isRunning ? FontWeight.bold : FontWeight.normal,

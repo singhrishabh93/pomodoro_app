@@ -1,5 +1,6 @@
 // lib/widgets/setting_tile.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingTile extends StatelessWidget {
   const SettingTile({
@@ -22,7 +23,9 @@ class SettingTile extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16),
+        style: GoogleFonts.outfit(
+          fontSize: 16,
+        ),
       ),
       trailing: isSwitchSetting
           ? Switch(
@@ -41,7 +44,10 @@ class SettingTile extends StatelessWidget {
                         ? () => onValueChanged?.call((value as int) - 1)
                         : null,
                   ),
-                  Text('$value'),
+                  Text(
+                    '$value',
+                    style: GoogleFonts.outfit(),
+                  ),
                   IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: value < 60

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro_app/blocs/settings/settings_bloc.dart';
 import 'package:pomodoro_app/blocs/theme/theme_bloc.dart';
 import 'package:pomodoro_app/screens/settings_screen.dart';
@@ -74,7 +75,13 @@ class _TimerScreenState extends State<TimerScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text('Settings'),
+                                        Text(
+                                          'Settings',
+                                          style: GoogleFonts.outfit(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
                                         IconButton(
                                           icon: const Icon(Icons.close),
                                           onPressed: () =>
@@ -204,7 +211,7 @@ class _TimerScreenState extends State<TimerScreen> {
                                   horizontal: 16, vertical: 12),
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const SizedBox(width: 8),
                           Container(
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -225,7 +232,7 @@ class _TimerScreenState extends State<TimerScreen> {
                                   horizontal: 28, vertical: 16),
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const SizedBox(width: 8),
                           Container(
                             decoration: BoxDecoration(
                               color: Theme.of(context)
@@ -260,72 +267,79 @@ class _TimerScreenState extends State<TimerScreen> {
     );
   }
 
-  Widget _buildSwitchSetting(String title, bool value, Function(bool) onChanged) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 12),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 16),
-        ),
-        Switch(
-          value: value,
-          onChanged: onChanged,
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildNumberSetting(String title, int value, Function(int) onChanged) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 12),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Text(
+  Widget _buildSwitchSetting(
+      String title, bool value, Function(bool) onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
             title,
-            style: const TextStyle(fontSize: 16),
+            style: GoogleFonts.outfit(
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+            ),
           ),
-        ),
-        SizedBox(width: 8),
-        Container(
-          width: 80,
-          height: 40,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.circular(8),
+          Switch(
+            value: value,
+            onChanged: onChanged,
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(width: 4),
-              Text(
-                '$value',
-                style: const TextStyle(fontSize: 16),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNumberSetting(String title, int value, Function(int) onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              title,
+              style: GoogleFonts.outfit(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  InkWell(
-                    onTap: () => onChanged(value + 1),
-                    child: const Icon(Icons.keyboard_arrow_up, size: 18),
-                  ),
-                  InkWell(
-                    onTap: () => onChanged(value > 1 ? value - 1 : 1),
-                    child: const Icon(Icons.keyboard_arrow_down, size: 18),
-                  ),
-                ],
-              ),
-              SizedBox(width: 4),
-            ],
+            ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+          SizedBox(width: 8),
+          Container(
+            width: 80,
+            height: 40,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(width: 4),
+                Text(
+                  '$value',
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InkWell(
+                      onTap: () => onChanged(value + 1),
+                      child: const Icon(Icons.keyboard_arrow_up, size: 18),
+                    ),
+                    InkWell(
+                      onTap: () => onChanged(value > 1 ? value - 1 : 1),
+                      child: const Icon(Icons.keyboard_arrow_down, size: 18),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

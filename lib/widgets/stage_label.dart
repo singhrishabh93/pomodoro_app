@@ -1,6 +1,7 @@
 // lib/widgets/stage_label.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pomodoro_app/blocs/timer/timer_state.dart';
 
 import '../blocs/timer/timer_bloc.dart';
@@ -15,7 +16,7 @@ class StageLabel extends StatelessWidget {
       builder: (context, state) {
         String label;
         IconData icon;
-        
+
         switch (state.stage) {
           case TimerStage.pomodoro:
             label = 'Focus';
@@ -30,7 +31,7 @@ class StageLabel extends StatelessWidget {
             icon = Icons.beach_access;
             break;
         }
-        
+
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -67,10 +68,10 @@ class StageLabel extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   label,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold,
+                  style: GoogleFonts.outfit(
                     fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ],
