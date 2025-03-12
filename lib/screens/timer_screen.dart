@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pomodoro_app/blocs/settings/settings_bloc.dart';
+import 'package:pomodoro_app/screens/settings_screen.dart';
 
 import '../blocs/timer/timer_bloc.dart';
 import '../blocs/timer/timer_state.dart';
@@ -49,15 +51,76 @@ class _TimerScreenState extends State<TimerScreen> {
                         seconds: state.seconds,
                         isRunning: state.isRunning,
                       ),
-                      const SizedBox(height: 64),
+                      const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          SettingsButton(),
-                          SizedBox(width: 24),
-                          PlayButton(),
-                          SizedBox(width: 24),
-                          SkipButton(),
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SettingsScreen(),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.more_horiz),
+                              iconSize: 34,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 12),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: IconButton(
+                              onPressed: () => context
+                                  .read<TimerBloc>()
+                                  .add(const TimerToggled()),
+                              icon: Icon(state.isRunning
+                                  ? Icons.pause
+                                  : Icons.play_arrow),
+                              iconSize: 44,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 28, vertical: 16),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                context.read<TimerBloc>().add(
+                                      TimerSkipped(
+                                          context.read<SettingsBloc>().state),
+                                    );
+                              },
+                              icon: const Icon(Icons.fast_forward),
+                              iconSize: 34,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 12),
+                            ),
+                          ),
                         ],
                       ),
                     ],
