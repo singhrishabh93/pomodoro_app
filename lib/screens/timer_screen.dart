@@ -78,19 +78,37 @@ class _TimerScreenState extends State<TimerScreen> {
                                         Text(
                                           'Settings',
                                           style: GoogleFonts.outfit(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.normal,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           ),
                                         ),
                                         IconButton(
-                                          icon: const Icon(Icons.close),
+                                          icon: Icon(Icons.close,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary),
                                           onPressed: () =>
                                               Navigator.of(context).pop(),
                                         ),
                                       ],
                                     ),
+                                    backgroundColor: Theme.of(context)
+                                        .scaffoldBackgroundColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                      side: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary
+                                            .withOpacity(0.3),
+                                        width: 1,
+                                      ),
+                                    ),
                                     contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 10),
+                                        horizontal: 24, vertical: 20),
                                     content: ConstrainedBox(
                                       constraints: BoxConstraints(
                                         maxHeight:
@@ -98,7 +116,7 @@ class _TimerScreenState extends State<TimerScreen> {
                                                 0.7,
                                         maxWidth:
                                             MediaQuery.of(context).size.width *
-                                                0.8,
+                                                0.9,
                                       ),
                                       child: SingleChildScrollView(
                                         child: BlocBuilder<SettingsBloc,
@@ -119,12 +137,15 @@ class _TimerScreenState extends State<TimerScreen> {
                                                           ThemeMode.dark,
                                                       (value) => context
                                                           .read<ThemeBloc>()
-                                                          .add(ThemeModeToggled(
-                                                              value
-                                                                  ? ThemeMode
-                                                                      .dark
-                                                                  : ThemeMode
-                                                                      .light)),
+                                                          .add(
+                                                            ThemeModeToggled(
+                                                                value
+                                                                    ? ThemeMode
+                                                                        .dark
+                                                                    : ThemeMode
+                                                                        .light),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildNumberSetting(
                                                       'Pomodoro length',
@@ -132,8 +153,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                       (value) => context
                                                           .read<SettingsBloc>()
                                                           .add(
-                                                              PomoLengthChanged(
-                                                                  value)),
+                                                            PomoLengthChanged(
+                                                                value),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildNumberSetting(
                                                       'Pomodoros until long break',
@@ -142,8 +165,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                       (value) => context
                                                           .read<SettingsBloc>()
                                                           .add(
-                                                              PomosUntilLongBreakChanged(
-                                                                  value)),
+                                                            PomosUntilLongBreakChanged(
+                                                                value),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildNumberSetting(
                                                       'Short break length',
@@ -152,8 +177,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                       (value) => context
                                                           .read<SettingsBloc>()
                                                           .add(
-                                                              ShortBreakLengthChanged(
-                                                                  value)),
+                                                            ShortBreakLengthChanged(
+                                                                value),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildNumberSetting(
                                                       'Long break length',
@@ -162,8 +189,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                       (value) => context
                                                           .read<SettingsBloc>()
                                                           .add(
-                                                              LongBreakLengthChanged(
-                                                                  value)),
+                                                            LongBreakLengthChanged(
+                                                                value),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildSwitchSetting(
                                                       'Auto resume timer',
@@ -171,8 +200,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                       (value) => context
                                                           .read<SettingsBloc>()
                                                           .add(
-                                                              AutoResumeToggled(
-                                                                  value)),
+                                                            AutoResumeToggled(
+                                                                value),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildSwitchSetting(
                                                       'Sound',
@@ -180,8 +211,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                           .soundEnabled,
                                                       (value) => context
                                                           .read<SettingsBloc>()
-                                                          .add(SoundToggled(
-                                                              value)),
+                                                          .add(
+                                                            SoundToggled(value),
+                                                          ),
+                                                      context,
                                                     ),
                                                     _buildSwitchSetting(
                                                       'Notifications',
@@ -190,8 +223,10 @@ class _TimerScreenState extends State<TimerScreen> {
                                                       (value) => context
                                                           .read<SettingsBloc>()
                                                           .add(
-                                                              NotificationsToggled(
-                                                                  value)),
+                                                            NotificationsToggled(
+                                                                value),
+                                                          ),
+                                                      context,
                                                     ),
                                                   ],
                                                 );
@@ -201,7 +236,6 @@ class _TimerScreenState extends State<TimerScreen> {
                                         ),
                                       ),
                                     ),
-                                    actions: null,
                                   ),
                                 );
                               },
@@ -267,79 +301,114 @@ class _TimerScreenState extends State<TimerScreen> {
     );
   }
 
-  Widget _buildSwitchSetting(
-      String title, bool value, Function(bool) onChanged) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
+  Widget _buildSwitchSetting(String title, bool value, Function(bool) onChanged, BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 12),
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: GoogleFonts.outfit(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).colorScheme.onBackground,
+          ),
+        ),
+        Switch(
+          value: value,
+          onChanged: onChanged,
+          activeColor: Theme.of(context).colorScheme.primary,
+          activeTrackColor: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _buildNumberSetting(String title, int value, Function(int) onChanged, BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 12),
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Text(
             title,
             style: GoogleFonts.outfit(
               fontSize: 16,
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.onBackground,
             ),
           ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
+        ),
+        const SizedBox(width: 8),
+        Container(
+          width: 90,
+          height: 36,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(color: Theme.of(context).colorScheme.primary.withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(8),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNumberSetting(String title, int value, Function(int) onChanged) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Text(
-              title,
-              style: GoogleFonts.outfit(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () => onChanged(value > 1 ? value - 1 : 1),
+                child: Container(
+                  width: 28,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    borderRadius: const BorderRadius.horizontal(left: Radius.circular(7)),
+                  ),
+                  child: Icon(
+                    Icons.remove,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(width: 8),
-          Container(
-            width: 80,
-            height: 40,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(width: 4),
-                Text(
-                  '$value',
-                  style: const TextStyle(fontSize: 16),
+              Text(
+                '$value',
+                style: GoogleFonts.outfit(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    InkWell(
-                      onTap: () => onChanged(value + 1),
-                      child: const Icon(Icons.keyboard_arrow_up, size: 18),
-                    ),
-                    InkWell(
-                      onTap: () => onChanged(value > 1 ? value - 1 : 1),
-                      child: const Icon(Icons.keyboard_arrow_down, size: 18),
-                    ),
-                  ],
+              ),
+              InkWell(
+                onTap: () => onChanged(value + 1),
+                child: Container(
+                  width: 28,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                    borderRadius: const BorderRadius.horizontal(right: Radius.circular(7)),
+                  ),
+                  child: Icon(
+                    Icons.add,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
-                SizedBox(width: 4),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
 }
