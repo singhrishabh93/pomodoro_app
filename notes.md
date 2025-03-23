@@ -1,6 +1,6 @@
+<!-- Refactor: improve structure
 # Notes
 
-
-## Entry 136
+## Entry 141
 
 Some thoughts and ideas...
