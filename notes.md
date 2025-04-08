@@ -1,10 +1,6 @@
 # Notes
 
 
-
-## Entry 161
-
-
+## Entry 166
 
 Some thoughts and ideas...
-
