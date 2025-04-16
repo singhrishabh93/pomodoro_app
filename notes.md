@@ -1,6 +1,6 @@
-// Updated
+<!-- FIXME: optimize later
 # Notes
 
-## Entry 181
+## Entry 186
 
 Some thoughts and ideas...
