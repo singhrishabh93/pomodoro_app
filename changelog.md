@@ -1,5 +1,5 @@
-<!-- NOTE: important change
+<!-- Refactor: improve structure
 ## Changes
 
-- Update 213
+- Update 218
 - Minor improvements
