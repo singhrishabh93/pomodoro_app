@@ -1,6 +1,6 @@
-// Updated
 # Notes
 
-## Entry 231
+## Entry 236
+
 
 Some thoughts and ideas...
