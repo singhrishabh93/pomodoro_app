@@ -1,4 +1,6 @@
-# Update: minor adjustment
-- Task 262
+- Task 267
+
 - Review code
+
 - Update documentation
+
