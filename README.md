@@ -1,6 +1,6 @@
-<!-- NOTE: important change
+<!-- Refactor: improve structure
 # Project
 
-Version: 1.0.264
+Version: 1.0.269
 
 A simple project.
