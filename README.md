@@ -1,6 +1,6 @@
-<!-- FIXME: optimize later
+<!-- Refactor: improve structure
 # Project
 
-Version: 1.0.274
+Version: 1.0.279
 
 A simple project.
