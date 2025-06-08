@@ -1,5 +1,5 @@
-<!-- Update: minor adjustment
 ## Changes
 
-- Update 283
+
+- Update 288
 - Minor improvements
