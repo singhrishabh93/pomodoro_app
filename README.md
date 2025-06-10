@@ -1,6 +1,6 @@
-<!-- Update: minor adjustment
+// Updated
 # Project
 
-Version: 1.0.289
+Version: 1.0.294
 
 A simple project.
