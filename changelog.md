@@ -1,5 +1,5 @@
-<!-- FIXME: optimize later
+<!-- Refactor: improve structure
 ## Changes
 
-- Update 298
+- Update 303
 - Minor improvements
