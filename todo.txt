@@ -1,4 +1,4 @@
-# Refactor: improve structure
-- Task 297
+- Task 302
 - Review code
 - Update documentation
+
