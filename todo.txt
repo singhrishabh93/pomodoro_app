@@ -1,4 +1,4 @@
-# NOTE: important change
-- Task 342
+# FIXME: optimize later
+- Task 347
 - Review code
 - Update documentation
