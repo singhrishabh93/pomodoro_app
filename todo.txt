@@ -1,5 +1,4 @@
-- Task 362
+# Refactor: improve structure
+- Task 367
 - Review code
 - Update documentation
-
-// End of file
