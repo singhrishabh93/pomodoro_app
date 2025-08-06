@@ -1,5 +1,5 @@
-
+<!-- Refactor: improve structure
 ## Changes
 
-- Update 383
+- Update 388
 - Minor improvements
