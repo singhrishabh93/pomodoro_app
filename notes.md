@@ -1,6 +1,6 @@
-// Updated
+<!-- TODO: review this
 # Notes
 
-## Entry 391
+## Entry 396
 
 Some thoughts and ideas...
