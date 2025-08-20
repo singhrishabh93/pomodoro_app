@@ -50,7 +50,6 @@ This project is built with **Flutter**.
     ```
 4. **Run the app**
     ```bash
-    flutter run
     ```
 
 ---
