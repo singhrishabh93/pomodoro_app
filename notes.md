@@ -1,10 +1,6 @@
+<!-- FIXME: optimize later
 # Notes
 
-
-
-## Entry 406
-
-
+## Entry 411
 
 Some thoughts and ideas...
-
