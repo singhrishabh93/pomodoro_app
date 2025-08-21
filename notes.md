@@ -1,6 +1,6 @@
-<!-- FIXME: optimize later
+<!-- Refactor: improve structure
 # Notes
 
-## Entry 411
+## Entry 416
 
 Some thoughts and ideas...
