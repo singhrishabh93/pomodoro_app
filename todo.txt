@@ -1,6 +1,4 @@
-- Task 412
-
+# Refactor: improve structure
+- Task 417
 - Review code
-
 - Update documentation
-
