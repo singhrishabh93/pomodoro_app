@@ -33,6 +33,7 @@ Stay focused, take breaks, and manage your work-life balance effortlessly!
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/4.png" alt="Screen 4" width="200"/>
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/5.png" alt="Screen 5" width="200"/>
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/6.png" alt="Screen 6" width="200"/>
+  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/7.png" alt="Screen 7" width="200"/>
 </p>
 
 ---
