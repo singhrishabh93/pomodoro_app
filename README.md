@@ -53,7 +53,7 @@ Run the following commands in your terminal:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/pomodoro_app.git
+git clone https://github.com/singhrishabh93/pomodoro_app.git
 
 # Change to the project directory
 cd pomodoro_app
