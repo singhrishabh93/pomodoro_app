@@ -27,13 +27,13 @@ Stay focused, take breaks, and manage your work-life balance effortlessly!
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/1.png" alt="Screen 1" width="200"/>
+  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/1.jpg" alt="Screen 1" width="200"/>
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/2.png" alt="Screen 2" width="200"/>
-  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/3.png" alt="Screen 3" width="200"/>
+  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/3.jpg" alt="Screen 3" width="200"/>
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/4.png" alt="Screen 4" width="200"/>
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/5.png" alt="Screen 5" width="200"/>
   <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/6.png" alt="Screen 6" width="200"/>
-  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/7.png" alt="Screen 7" width="200"/>
+  <img src="https://github.com/singhrishabh93/pomodoro_app/blob/main/screenshots/7.jpg" alt="Screen 7" width="200"/>
 </p>
 
 ---
