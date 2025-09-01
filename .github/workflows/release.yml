@@ -1,0 +1,168 @@
+name: Android Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v1.0.0
+  workflow_dispatch:  # Allows manual triggering
+    inputs:
+      version:
+        description: 'Version number (e.g., 1.0.1)'
+        required: true
+        default: '1.0.1'
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: ☕ Setup Java 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        
+    - name: 🐦 Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.0'
+        channel: 'stable'
+        
+    - name: 📦 Install dependencies
+      run: flutter pub get
+      
+    - name: 🔍 Analyze code
+      run: flutter analyze
+      
+    - name: 🧪 Run tests
+      run: flutter test
+      
+    - name: 🔧 Build Android APK (Release)
+      run: flutter build apk --release
+      
+    - name: 📱 Build Android App Bundle (for Play Store)
+      run: flutter build appbundle --release
+      
+    - name: 📁 Prepare release files
+      run: |
+        mkdir -p release-files
+        
+        # Copy APK with descriptive name
+        cp build/app/outputs/flutter-apk/app-release.apk release-files/pomodoro-app-v${{ github.event.inputs.version || github.ref_name }}-android.apk
+        
+        # Copy App Bundle for Play Store
+        cp build/app/outputs/bundle/release/app-release.aab release-files/pomodoro-app-v${{ github.event.inputs.version || github.ref_name }}.aab
+        
+        # Get file sizes for release notes
+        APK_SIZE=$(du -h release-files/pomodoro-app-v${{ github.event.inputs.version || github.ref_name }}-android.apk | cut -f1)
+        AAB_SIZE=$(du -h release-files/pomodoro-app-v${{ github.event.inputs.version || github.ref_name }}.aab | cut -f1)
+        
+        echo "APK_SIZE=$APK_SIZE" >> $GITHUB_ENV
+        echo "AAB_SIZE=$AAB_SIZE" >> $GITHUB_ENV
+        
+    - name: 🏷️ Get version info
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          VERSION="${{ github.event.inputs.version }}"
+          TAG="v$VERSION"
+        else
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=${TAG#v}
+        fi
+        
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        
+        # Check if pre-release
+        if [[ "$TAG" == *"beta"* ]] || [[ "$TAG" == *"alpha"* ]] || [[ "$TAG" == *"rc"* ]]; then
+          echo "prerelease=true" >> $GITHUB_OUTPUT
+        else
+          echo "prerelease=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: 🚀 Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.tag }}
+        name: 🍅 Pomodoro App v${{ steps.version.outputs.version }}
+        draft: false
+        prerelease: ${{ steps.version.outputs.prerelease }}
+        body: |
+          # 🍅 Pomodoro App v${{ steps.version.outputs.version }}
+          
+          **Focus better, work smarter, achieve more with the Pomodoro Technique!**
+          
+          ## 📱 Download for Android
+          
+          | File | Size | Description |
+          |------|------|-------------|
+          | 📲 `pomodoro-app-v${{ steps.version.outputs.version }}-android.apk` | ${{ env.APK_SIZE }} | **Direct install** - Download and install on your Android device |
+          | 🏪 `pomodoro-app-v${{ steps.version.outputs.version }}.aab` | ${{ env.AAB_SIZE }} | **Play Store Bundle** - For developers/sideloading |
+          
+          ### 🚀 Quick Install
+          1. **Download** the APK file above
+          2. **Enable** "Install from unknown sources" in your Android Settings → Security
+          3. **Tap** the downloaded APK to install
+          4. **Start focusing** with the Pomodoro Technique!
+          
+          ## ✨ App Features
+          
+          ### 🎯 **Productivity Tools**
+          - **25-minute Focus Sessions** for deep work
+          - **5-minute Short Breaks** to recharge
+          - **15-minute Long Breaks** after 4 pomodoros
+          - **Session Counter** to track your productivity
+          
+          ### 🎨 **Beautiful Design**
+          - **Dynamic Colors** - UI changes based on timer stage (Red→Green→Blue)
+          - **Smooth Animations** for engaging user experience
+          - **Dark & Light Themes** for comfortable viewing
+          - **Modern Material Design** interface
+          
+          ### ⚙️ **Customizable Settings**
+          - **Adjustable Timer Lengths** - Set your own focus/break durations
+          - **Auto-Resume Option** - Automatically start next session
+          - **Sound Controls** - Toggle audio notifications on/off
+          - **Notification Settings** - Get alerts when stages change
+          
+          ### 💾 **Smart Features**
+          - **Auto-Save Settings** - Your preferences persist between sessions
+          - **Stage Skip** - Jump to next stage when needed
+          - **Tap to Start/Pause** - Simple gesture controls
+          
+          ## 🔧 Technical Details
+          - **Flutter Version**: 3.24.0
+          - **Android Support**: Android 5.0+ (API 21+)
+          - **App Size**: ~${{ env.APK_SIZE }}
+          - **Permissions**: Minimal - just notifications and audio
+          
+          ## 📖 How to Use
+          1. **Tap** the large play button to start a focus session
+          2. **Work focused** for 25 minutes
+          3. **Take a break** when the timer completes
+          4. **Repeat** the cycle to boost productivity
+          5. **Customize** settings by tapping the gear icon
+          
+          ## 🎯 The Pomodoro Technique
+          This app implements the famous Pomodoro Technique:
+          - Work in 25-minute focused intervals
+          - Take 5-minute breaks between sessions  
+          - After 4 pomodoros, take a longer 15-minute break
+          - Stay focused, avoid burnout, and maintain high productivity!
+          
+          ---
+          
+          ### 🔗 Links
+          - 🏪 **[Google Play Store](https://play.google.com/store/apps/details?id=com.rish.pomodoro.app)**
+          - 💻 **[Source Code](https://github.com/${{ github.repository }})**
+          - 🐛 **[Report Issues](https://github.com/${{ github.repository }}/issues)**
+          
+          **⭐ Enjoying the app? Star this repository and share with friends!**
+        files: |
+          release-files/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
